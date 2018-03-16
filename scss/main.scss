@@ -14,8 +14,8 @@ body {
   margin: 0 auto;
 
   margin-top: 4rem;
-  border-left: 1px solid #ededea;
-  border-right: 1px solid #ededea;
+  // border-left: 1px solid #ededea;
+  // border-right: 1px solid #ededea;
 }
 
 
@@ -57,7 +57,7 @@ body {
 }
 
 .article-block {
-  /* border-top: 1px solid hsla(0, 0, 0, .1); */
+  border-top: 1px solid hsla(0, 0, 0, .1);
   padding: 16px 0;
 
   .favicon {
@@ -82,7 +82,7 @@ body {
 
     .article-link {
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 400;
       display: block;
       color: hsla(0, 0, 0, .9);
