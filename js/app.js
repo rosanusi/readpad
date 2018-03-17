@@ -24,11 +24,15 @@ function main() {
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function getArticleUrl(e) {
+
   if (e.keyCode == 13) {
       // Do something
 			getArticleDetails();
-			console.log('processrequested');
+			console.log('Article URL processing');
   }
+
+
+
 }
 
 
@@ -40,25 +44,33 @@ function getArticleUrl(e) {
 
 
 function getArticleDetails() {
-	var xhr = new XMLHttpRequest();
-	xhr.addEventListener("readystatechange", processRequest);
-	var url = "https://mercury.postlight.com/parser?url="+encodeURIComponent(urlInput.value);
-	xhr.open('GET', url, true);
-	xhr.setRequestHeader("x-api-key", "VAxVxFVwzK2q1hlKoPGdtTLpfvVdIz8Y5QwikQ7U");
-	xhr.send();
+	return new Promise((resolve, reject) => {
+		var xhr = new XMLHttpRequest();
+		xhr.addEventListener("readystatechange", processRequest);
+		var url = "https://mercury.postlight.com/parser?url="+encodeURIComponent(urlInput.value);
+		xhr.open('GET', url, true);
+		xhr.setRequestHeader("x-api-key", "VAxVxFVwzK2q1hlKoPGdtTLpfvVdIz8Y5QwikQ7U");
+		xhr.send();
 
-	function processRequest(e) {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-				// time to partay!!!
-				var response = JSON.parse(xhr.responseText);
-				console.log(response);
-				// console.log(response.title);
+		function processRequest(e) {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+					// time to partay!!!
+					var response = JSON.parse(xhr.responseText);
+					resolve(response);
+					// console.log(response);
+					// console.log(response.title);
 
-				storedArticleList.push(response);
-				saveinStorage();
+					storedArticleList.push(response);
+					saveinStorage();
+					console.log('Article Details processed and stored');
+					displayArticles();
+			}
 		}
-	}
+		// console.log(storedArticleList);
+
+	});
 }
+
 
 
 
@@ -68,7 +80,7 @@ function getArticleDetails() {
 
 function saveinStorage() {
 	localStorage["articleList"] = JSON.stringify(storedArticleList);
-  console.log('storedArticleList Updated');
+  console.log('Article Details stored');
 }
 
 
@@ -93,26 +105,29 @@ function loadfromStorage() {
 function displayArticles() {
 
 	const listContainer = document.querySelector('.article-list');
-	const articleBlockTemplate = listContainer.querySelector('.article-block');
-
+	const articleBlockTemplate = listContainer.querySelector('.articleBlk-template');
+	listContainer.innerHTML = '';
 	for(let article of storedArticleList) {
-			console.log(article);
+			// console.log(article);
 			const articleBlock = articleBlockTemplate.cloneNode(true);
+			articleBlock.classList.add('article-block');
+			articleBlock.classList.remove('.articleBlk-template');
 			listContainer.prepend(articleBlock);
 			const articleLink = articleBlock.querySelector('.article-link');
 			const articleAuthor = articleBlock.querySelector('.article-author');
 			const articleDomain = articleBlock.querySelector('.article-domain');
 
-			articleLink.innerText = article.title;
+			articleLink.innerText = 	article.title;
 			articleAuthor.innerText = 'by ' + article.author + ',';
 			articleDomain.innerText = article.domain;
 
-			console.log(listContainer);
+			console.log(storedArticleList);
+
 	}
+	console.log('Article Displayed');
+
+
 }
-
-
-
 
 
 

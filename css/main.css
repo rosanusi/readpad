@@ -70,22 +70,24 @@ body {
   margin-bottom: 8px; }
 .input-url .url-field {
   width: 100%;
-  font-size: 1.5rem;
-  color: rgba(0, 0, 0, 0.8);
+  font-size: 1rem;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  padding: 1rem;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0); }
   .input-url .url-field:hover {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+    border: 1px solid rgba(0, 0, 0, 0.1); }
   .input-url .url-field:focus, .input-url .url-field:active {
     outline: none; }
 
 .list-container {
   max-width: 50rem;
   margin: 0 auto;
-  margin-top: 4rem; }
+  margin-top: 3rem; }
 
 .article-block {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 16px 0; }
   .article-block .favicon {
     display: inline-block;
@@ -94,7 +96,8 @@ body {
     height: 20px;
     position: relative;
     overflow: hidden;
-    vertical-align: top; }
+    vertical-align: top;
+    display: none; }
     .article-block .favicon img {
       width: 100%;
       height: auto;
@@ -112,5 +115,9 @@ body {
     .article-block .article-info .article-meta {
       font-size: .9rem;
       color: rgba(0, 0, 0, 0.6); }
+
+/* Helper Classes */
+.hidden {
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */

@@ -33,13 +33,15 @@ body {
 
   .url-field {
     width: 100%;
-    font-size: rem(24);
-    color: hsla(0, 0, 0, .8);
+    font-size: rem(16);
     border: none;
-    border-bottom: 1px solid hsla(0, 0, 0, .1);
+    padding: rem(16);
+    color: hsla(0, 0, 0, .8);
+    background-color: hsla(0, 0, 0, .05);
+    border: 1px solid hsla(0, 0, 0, 0);
 
     &:hover {
-      border-bottom: 1px solid hsla(0, 0, 0, .5);
+      border: 1px solid hsla(0, 0, 0, .1);
     }
 
     &:focus, &:active {
@@ -53,11 +55,11 @@ body {
 .list-container {
   max-width: 50rem;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 
 .article-block {
-  border-top: 1px solid hsla(0, 0, 0, .1);
+  border-bottom: 1px solid hsla(0, 0, 0, .1);
   padding: 16px 0;
 
   .favicon {
@@ -68,6 +70,8 @@ body {
     position: relative;
     overflow: hidden;
     vertical-align: top;
+    display: none;
+    
     img {
       width: 100%;
       height: auto;
@@ -92,10 +96,7 @@ body {
       font-size: .9rem;
       color: hsla(0, 0, 0, .6);
     }
-
   }
-
-
 
 
 
@@ -104,4 +105,12 @@ body {
 
 .article-info {
 
+}
+
+
+
+/* Helper Classes */
+
+.hidden {
+  display: none;
 }
