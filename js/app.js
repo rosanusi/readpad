@@ -18,6 +18,7 @@ function main() {
 
 
 
+
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // When user adds a url and presses enter, send the url to the postlight api to
 // retrieve details from the url
@@ -25,10 +26,38 @@ function main() {
 
 function getArticleUrl(e) {
 
+
+
   if (e.keyCode == 13) {
       // Do something
-			getArticleDetails();
-			console.log('Article URL processing');
+			const inputBlock = document.querySelector('.input-url');
+			let tempErrorBlock = inputBlock.querySelector('.error-block');
+			var pattern = new RegExp(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g); // fragment locater
+
+			if (!pattern.test(urlInput.value)) {
+
+				if (inputBlock.contains(tempErrorBlock))
+					return;
+
+				const errorBlock = document.createElement('div');
+				errorBlock.classList.add('error-block');
+				errorBlock.innerText = 'Something is not quite right with the url';
+				// console.log(errorBlock);
+				inputBlock.appendChild(errorBlock);
+
+				console.log(errorBlock);
+
+			} else {
+
+				if (inputBlock.contains(tempErrorBlock)) {
+					tempErrorBlock.remove();
+				}
+
+				getArticleDetails();
+				console.log('Article URL processing');
+
+			}
+			urlInput.value = '';
   }
 
 
