@@ -9,6 +9,8 @@ body {
 
 .wrap {
   width: 100vw;
+  display: flex;
+  flex-flow: row nowrap;
   // border-left: 1px solid #ededea;
   // border-right: 1px solid #ededea;
 }
@@ -19,6 +21,15 @@ body {
   // background-color: hsla(175, 40, 95, .5);
   border-right: 1px solid hsla(0, 0, 0, .05);
 }
+
+.right-pane {
+  width: 75vw;
+  min-height: 100vh;
+  // background-color: hsla(175, 40, 95, .5);
+  border-right: 1px solid hsla(0, 0, 0, .05);
+  padding: rem(40);
+}
+
 
 .add-url {
   border: 1px solid #D3DCE5;
@@ -152,6 +163,14 @@ body {
     }
   }
 
+}
+
+
+
+.article-content {
+  width: 40vw;
+  border-left: 1px solid hsla(0, 0, 0, .2);
+  border-right: 1px solid hsla(0, 0, 0, .2);
 }
 
 

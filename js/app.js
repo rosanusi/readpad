@@ -24,6 +24,7 @@ function revealUrlForm() {
 
 	let inputBlock = document.querySelector('.input-url');
 	inputBlock.classList.remove('hidden');
+	urlInput.focus();
 
 }
 
@@ -128,7 +129,7 @@ function getArticleDetails() {
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// 3. the array is saved into the localstorage
+// the array is saved into the localstorage
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function saveinStorage() {
@@ -144,7 +145,7 @@ function saveinStorage() {
 function loadfromStorage() {
 	if(!localStorage["articleList"])
 	return false;
-	
+
 	// retrive Array
 	storedArticleList = JSON.parse(localStorage["articleList"]);
 		return true;
@@ -153,10 +154,10 @@ function loadfromStorage() {
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// 4. Display these urls on the page
+// Display these urls on the page
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-function displayArticles() {
+function displayArticles(article) {
 
 	const listContainer = document.querySelector('.article-list');
 	const articleBlockTemplate = listContainer.querySelector('.articleBlk-template');
@@ -177,16 +178,42 @@ function displayArticles() {
 			articleDomain.setAttribute('href', article.url);
 
 			console.log(storedArticleList);
+			console.log('Article Displayed');
+
+			//Open the project Content
+			articleLink.addEventListener("click", e => showArticleContent(e, article, articleLink));
+
 
 	}
-	console.log('Article Displayed');
 
 }
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Display Article content
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function showArticleContent(article) {
+			// console.log('Aiight lets show these bad boys');
+			const articleContent = document.querySelector('.article-content');
+			const articleContentTitle = articleContent.querySelector('.title');
+			const articleContentAuthor = articleContent.querySelector('.author');
+			const articleContentDomain = articleContent.querySelector('.domain');
+			const articleContentText = articleContent.querySelector('.full-text');
+
+
+
+
+			console.log(article.url);
+			console.log(articleContent, articleContentTitle, articleContentAuthor, articleContentDomain );
+}
+
+
+
+
+main();
 
 const addUrlBtn = document.querySelector('.add-url');
 addUrlBtn.addEventListener("click", revealUrlForm);
 
 const urlInput = document.querySelector('.url-field');
 urlInput.addEventListener("keydown", getArticleUrl);
-
-main();
