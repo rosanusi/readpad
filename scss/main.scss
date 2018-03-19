@@ -8,27 +8,62 @@ body {
 }
 
 .wrap {
-  width: rem(700);
-  height: 500px;
-  padding: rem(24);
-  margin: 0 auto;
-
-  margin-top: 4rem;
+  width: 100vw;
   // border-left: 1px solid #ededea;
   // border-right: 1px solid #ededea;
 }
 
+.left-pane {
+  width: 25vw;
+  min-height: 100vh;
+  // background-color: hsla(175, 40, 95, .5);
+  border-right: 1px solid hsla(0, 0, 0, .05);
+}
+
+.add-url {
+  border: 1px solid #D3DCE5;
+  padding:  4px 8px;
+  line-height: 1;
+  font-weight: 600;
+  color: hsla(0, 0, 0, .9);
+  margin-left: rem(16);
+  margin-top: rem(16);
+  box-shadow: 4px 4px 0px 0px hsla(0, 0%, 0%, 0.7);
+  cursor: pointer;
+
+  &:focus, &:active, &:hover {
+    outline: none;
+    box-shadow: 4px 4px 0px 0px hsla(0, 0%, 0%, 1);
+  }
+}
 
 .input-url {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, .95);
+  justify-content: center;
+
+  .container {
+    width: 60vw;
+    align-self: center;
+  }
+
 
   label {
     display: block;
-    font-size: rem(12);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: hsla(0, 0, 0, .4);
+    font-size: rem(20);
+    font-weight: 600;
+    // text-transform: uppercase;
+    // letter-spacing: 1px;
+    color: hsla(0, 0, 0, .7);
     margin-bottom: 8px;
+
   }
 
   .url-field {
@@ -37,8 +72,8 @@ body {
     border: none;
     padding: rem(16);
     color: hsla(0, 0, 0, .8);
-    background-color: hsla(0, 0, 0, .05);
-    border: 1px solid hsla(0, 0, 0, 0);
+    // background-color: hsla(0, 0, 0, .05);
+    border: 1px solid hsla(0, 0, 0, .1);
 
     &:hover {
       border: 1px solid hsla(0, 0, 0, .1);
@@ -49,18 +84,23 @@ body {
     }
   }
 
+  .error-block {
+    margin-top: 8px;
+    color:  #DA0809;
+    font-size: 14px;
+  }
+
 }
 
 
 .list-container {
   max-width: 50rem;
   margin: 0 auto;
-  margin-top: 3rem;
 }
 
 .article-block {
-  border-bottom: 1px solid hsla(0, 0, 0, .1);
-  padding: 16px 0;
+  border-bottom: 1px solid hsla(0, 0, 0, .05);
+  padding: rem(16);
 
   .favicon {
     display: inline-block;
@@ -71,7 +111,7 @@ body {
     overflow: hidden;
     vertical-align: top;
     display: none;
-    
+
     img {
       width: 100%;
       height: auto;
@@ -86,24 +126,31 @@ body {
 
     .article-link {
       text-decoration: none;
-      font-size: 1rem;
-      font-weight: 400;
+      font-size: rem(14);
+      font-weight: 600;
       display: block;
-      color: hsla(0, 0, 0, .9);
+      color: hsla(0, 0, 0, .7);
+
+      &:hover {
+        color: hsla(0, 0, 0, 1);
+      }
     }
 
     .article-meta {
-      font-size: .9rem;
-      color: hsla(0, 0, 0, .6);
+      font-size: rem(12);
+      color: hsla(0, 0, 0, .4);
+      display: block;
+
+      a {
+        color: hsla(0, 0, 0, .5);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
-
-
-
-}
-
-
-.article-info {
 
 }
 

@@ -19,25 +19,31 @@
 
   <div class="wrap">
 
-    <div class="input-url">
-      <label for="url">Paste your url here</label>
-      <input type="text" class="url-field" id="url-field" name="url" placeholder="" />
-    </div>
+    <div class="left-pane">
+      <button class="add-url" type="button">&plus; Add URL</button>
 
+      <div class="input-url hidden">
+        <div class="container">
+          <label for="url">Paste the article url below and press enter</label>
+          <input type="text" class="url-field" id="url-field" name="url" placeholder="" />
+        </div>
+      </div>
 
-    <div class="list-container">
-      <ul class="article-list">
-        <li class="articleBlk-template">
-          <span class="icon favicon"></span>
-          <div class="article-info">
-            <a href="#" class="article-link"></a>
-            <span class="article-meta">
-              <span class="article-author"></span>
-              <span class="article-domain"></span>
-            </span>
-          </div>
-        </li>
-      </ul>
+      <div class="list-container">
+        <ul class="article-list">
+          <li class="articleBlk-template">
+            <span class="icon favicon"></span>
+            <div class="article-info">
+              <a href="#" class="article-link"></a>
+              <span class="article-meta">
+                <!-- <span class="article-author"></span> -->
+                <a class="article-domain"></a>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
 

@@ -54,41 +54,70 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
 
 .wrap {
-  width: 43.75rem;
-  height: 500px;
-  padding: 1.5rem;
-  margin: 0 auto;
-  margin-top: 4rem; }
+  width: 100vw; }
 
-.input-url label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(0, 0, 0, 0.4);
-  margin-bottom: 8px; }
-.input-url .url-field {
-  width: 100%;
-  font-size: 1rem;
-  border: none;
-  padding: 1rem;
-  color: rgba(0, 0, 0, 0.8);
-  background-color: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0); }
-  .input-url .url-field:hover {
+.left-pane {
+  width: 25vw;
+  min-height: 100vh;
+  border-right: 1px solid rgba(0, 0, 0, 0.05); }
+
+.add-url {
+  border: 1px solid #D3DCE5;
+  padding: 4px 8px;
+  line-height: 1;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.9);
+  margin-left: 1rem;
+  margin-top: 1rem;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.7);
+  cursor: pointer; }
+  .add-url:focus, .add-url:active, .add-url:hover {
+    outline: none;
+    box-shadow: 4px 4px 0px 0px black; }
+
+.input-url {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.95);
+  justify-content: center; }
+  .input-url .container {
+    width: 60vw;
+    align-self: center; }
+  .input-url label {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 8px; }
+  .input-url .url-field {
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    padding: 1rem;
+    color: rgba(0, 0, 0, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.1); }
-  .input-url .url-field:focus, .input-url .url-field:active {
-    outline: none; }
+    .input-url .url-field:hover {
+      border: 1px solid rgba(0, 0, 0, 0.1); }
+    .input-url .url-field:focus, .input-url .url-field:active {
+      outline: none; }
+  .input-url .error-block {
+    margin-top: 8px;
+    color: #DA0809;
+    font-size: 14px; }
 
 .list-container {
   max-width: 50rem;
-  margin: 0 auto;
-  margin-top: 3rem; }
+  margin: 0 auto; }
 
 .article-block {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 16px 0; }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem; }
   .article-block .favicon {
     display: inline-block;
     margin-right: 8px;
@@ -108,13 +137,21 @@ body {
     -webkit-font-smoothing: antialiased; }
     .article-block .article-info .article-link {
       text-decoration: none;
-      font-size: 1rem;
-      font-weight: 400;
+      font-size: 0.875rem;
+      font-weight: 600;
       display: block;
-      color: rgba(0, 0, 0, 0.9); }
+      color: rgba(0, 0, 0, 0.7); }
+      .article-block .article-info .article-link:hover {
+        color: black; }
     .article-block .article-info .article-meta {
-      font-size: .9rem;
-      color: rgba(0, 0, 0, 0.6); }
+      font-size: 0.75rem;
+      color: rgba(0, 0, 0, 0.4);
+      display: block; }
+      .article-block .article-info .article-meta a {
+        color: rgba(0, 0, 0, 0.5);
+        text-decoration: none; }
+        .article-block .article-info .article-meta a:hover {
+          text-decoration: underline; }
 
 /* Helper Classes */
 .hidden {

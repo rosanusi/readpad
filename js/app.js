@@ -16,7 +16,32 @@ function main() {
 	}
 }
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Reveal the search field once user presses the add button
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+function revealUrlForm() {
+
+	let inputBlock = document.querySelector('.input-url');
+	inputBlock.classList.remove('hidden');
+
+}
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Hide the search field once hits escape
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+document.onkeydown = function(evt) {
+		let inputBlock = document.querySelector('.input-url');
+
+		evt = evt || window.event;
+    if (evt.keyCode == 27) {
+			inputBlock.classList.add('hidden');
+			console.log('hide the form bro!');
+    }
+};
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -29,8 +54,9 @@ function getArticleUrl(e) {
 
 
   if (e.keyCode == 13) {
-      // Do something
+
 			const inputBlock = document.querySelector('.input-url');
+			const inputBlockContainer = inputBlock.querySelector('.container');
 			let tempErrorBlock = inputBlock.querySelector('.error-block');
 			var pattern = new RegExp(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g); // fragment locater
 
@@ -41,9 +67,9 @@ function getArticleUrl(e) {
 
 				const errorBlock = document.createElement('div');
 				errorBlock.classList.add('error-block');
-				errorBlock.innerText = 'Something is not quite right with the url';
-				// console.log(errorBlock);
-				inputBlock.appendChild(errorBlock);
+				errorBlock.innerText = 'Something is not quite right with the url!!!';
+
+				inputBlockContainer.appendChild(errorBlock);
 
 				console.log(errorBlock);
 
@@ -53,6 +79,7 @@ function getArticleUrl(e) {
 					tempErrorBlock.remove();
 				}
 
+				inputBlock.classList.add('hidden');
 				getArticleDetails();
 				console.log('Article URL processing');
 
@@ -83,11 +110,9 @@ function getArticleDetails() {
 
 		function processRequest(e) {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-					// time to partay!!!
+
 					var response = JSON.parse(xhr.responseText);
 					resolve(response);
-					// console.log(response);
-					// console.log(response.title);
 
 					storedArticleList.push(response);
 					saveinStorage();
@@ -95,7 +120,6 @@ function getArticleDetails() {
 					displayArticles();
 			}
 		}
-		// console.log(storedArticleList);
 
 	});
 }
@@ -120,6 +144,7 @@ function saveinStorage() {
 function loadfromStorage() {
 	if(!localStorage["articleList"])
 	return false;
+	
 	// retrive Array
 	storedArticleList = JSON.parse(localStorage["articleList"]);
 		return true;
@@ -147,19 +172,19 @@ function displayArticles() {
 			const articleDomain = articleBlock.querySelector('.article-domain');
 
 			articleLink.innerText = 	article.title;
-			articleAuthor.innerText = 'by ' + article.author + ',';
+			// articleAuthor.innerText = 'by ' + article.author + ',';
 			articleDomain.innerText = article.domain;
+			articleDomain.setAttribute('href', article.url);
 
 			console.log(storedArticleList);
 
 	}
 	console.log('Article Displayed');
 
-
 }
 
-
-
+const addUrlBtn = document.querySelector('.add-url');
+addUrlBtn.addEventListener("click", revealUrlForm);
 
 const urlInput = document.querySelector('.url-field');
 urlInput.addEventListener("keydown", getArticleUrl);
