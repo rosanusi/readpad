@@ -157,7 +157,7 @@ function loadfromStorage() {
 // Display these urls on the page
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-function displayArticles(article) {
+function displayArticles(e, article) {
 
 	const listContainer = document.querySelector('.article-list');
 	const articleBlockTemplate = listContainer.querySelector('.articleBlk-template');
@@ -177,14 +177,12 @@ function displayArticles(article) {
 			articleDomain.innerText = article.domain;
 			articleDomain.setAttribute('href', article.url);
 
-			console.log(storedArticleList);
-			console.log('Article Displayed');
-
 			//Open the project Content
 			articleLink.addEventListener("click", e => showArticleContent(e, article, articleLink));
-
-
 	}
+
+	console.log(storedArticleList);
+	console.log('Article Displayed');
 
 }
 
@@ -192,23 +190,37 @@ function displayArticles(article) {
 // Display Article content
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-function showArticleContent(article) {
+function showArticleContent(e, article) {
 			// console.log('Aiight lets show these bad boys');
 			const articleContent = document.querySelector('.article-content');
 			const articleContentTitle = articleContent.querySelector('.title');
 			const articleContentAuthor = articleContent.querySelector('.author');
 			const articleContentDomain = articleContent.querySelector('.domain');
-			const articleContentText = articleContent.querySelector('.full-text');
+			const articleContentDetails = articleContent.querySelector('.full-text');
 
+			// console.log(article.content);
 
+			articleContentDetails.innerHTML = article.content;
 
+			let allTextContent = articleContentDetails.getElementsByTagName('p');
 
-			console.log(article.url);
-			console.log(articleContent, articleContentTitle, articleContentAuthor, articleContentDomain );
+			for (var i = 0; i < allTextContent.length; i++) {
+			    console.log(allTextContent[i]);
+					// articleContentDetails.innerHTML = allTextContent[i];
+
+			}
+
+			// console.log(articleContentText);
+			// console.log(JSON.stringify(articleContentText, null, 1));
+
+			articleContentTitle.innerText = article.title;
+			articleContentAuthor.innerText = article.author;
+			articleContentDomain.innerText = article.domain;
+			// articleContentText.innerHTML = article.content;
+
+			articleContent.classList.remove('hidden');
+
 }
-
-
-
 
 main();
 
