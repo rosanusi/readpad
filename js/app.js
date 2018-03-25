@@ -198,31 +198,35 @@ function showArticleContent(e, article) {
 			const articleContentDomain = articleContent.querySelector('.domain');
 			const articleContentDetails = articleContent.querySelector('.full-text');
 
-			// console.log(article.content);
 
-			articleContentDetails.innerHTML = article.content;
 
-			let allTextContent = articleContentDetails.getElementsByTagName('p');
+			const cleanContent = sanitizeHtml(article.content, {
+			  allowedTags: [ 'p', 'a', 'span', 'strong', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'figure', 'img', 'figcaption', 'code'  ],
+			  // allowedAttributes: {
+			  //   'a': [ 'href' ]
+			  // },
+			  allowedIframeHostnames: ['www.youtube.com']
+			});
 
-			for (var i = 0; i < allTextContent.length; i++) {
-			    console.log(allTextContent[i]);
-					// articleContentDetails.innerHTML = allTextContent[i];
 
-			}
+			console.log(article.content);
+			// console.log(cleanContent);
 
-			// console.log(articleContentText);
-			// console.log(JSON.stringify(articleContentText, null, 1));
+			articleContentDetails.innerHTML = cleanContent;
+
 
 			articleContentTitle.innerText = article.title;
 			articleContentAuthor.innerText = article.author;
 			articleContentDomain.innerText = article.domain;
-			// articleContentText.innerHTML = article.content;
 
 			articleContent.classList.remove('hidden');
 
 }
 
 main();
+
+// var html = "<strong>hello world</strong>";
+// console.log(sanitizeHtml(html));
 
 const addUrlBtn = document.querySelector('.add-url');
 addUrlBtn.addEventListener("click", revealUrlForm);
